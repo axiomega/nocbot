@@ -22,10 +22,28 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-    	<groupId>com.twilio.sdk</groupId>
-    	<artifactId>twilio-java-sdk</artifactId>
-    	<version>3.3.10-SNAPSHOT</version>
-    	<scope>runtime</scope>
+      <groupId>com.twilio.sdk</groupId>
+      <artifactId>twilio-java-sdk</artifactId>
+      <version>3.3.10-SNAPSHOT</version>
     </dependency>
   </dependencies>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <finalName>uber-${artifactId}-${version}</finalName>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>
